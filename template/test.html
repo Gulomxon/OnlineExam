@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test</title>
+    <style>
+        .shapka {
+        width: 100%;
+        background-color: cyan;
+        padding: 10px;
+        }
+        .testcase {
+        display: flex;
+        }
+        .test-tanasi {
+        width: 60%;
+        padding-left: 5%;
+
+        }
+        .test-raqamlar {
+        width: 25%;
+        background-color: lightblue;
+        float: right;
+        }
+        .radiolar {
+        cursor: pointer;
+
+        }
+        .radiolar:hover {
+        background-color: pink;
+        }
+    </style>
+</head>
+<body>
+<div class="shapka">
+    <p>Foydalanuvchi</p>
+</div>
+
+<div class="testcase">
+<div class="test-tanasi">
+    <form method="POST">
+        {% csrf_token %}
+
+        {% for test in tests %}
+        <p style="background-color: silver; padding: 5px;">{{test.question}}</p>
+        <input type="hidden" value="{{test.id}}" name="{{ forloop.counter }}">
+          <label class="radiolar"><input type="radio" class="radiolar" name="{{test.id}}" value="{{test.correct}}"> {{test.correct}}</label><br>
+          <label class="radiolar"><input type="radio" class="radiolar" name="{{test.id}}" value="{{test.incorrect1}}"> {{test.incorrect1}}</label><br>
+          <label class="radiolar"><input type="radio" class="radiolar" name="{{test.id}}" value="{{test.incorrect2}}"> {{test.incorrect2}}</label><br>
+          <label class="radiolar"><input type="radio" class="radiolar" name="{{test.id}}" value="{{test.incorrect3}}"> {{test.incorrect3}}</label><br>
+        {% endfor%}
+        <input type="submit" value="submit">
+    </form>
+    </div>
+    <div class="test-raqamlar">
+
+    </div>
+    </div>
+</body>
+</html>
